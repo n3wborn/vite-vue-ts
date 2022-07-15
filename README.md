@@ -1,16 +1,66 @@
-# Vue 3 + TypeScript + Vite
+# Vite Vue TS
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Install
 
-## Recommended IDE Setup
+`git clone https://github.com/n3wborn/vite-vue-ts.git`
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+`cd vite-vue-ts`
 
-## Type Support For `.vue` Imports in TS
+`make install`
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+## Config
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+Vite and Docker are configured to use 3333 port but you can change if you want.
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+**change Vite port**:
+
+```diff
+# vite.config.ts
+server: {
+-    port: 3333,
++    port: <new port>,
+    host: true,
+},
+
+```
+
+**change container port accordingly**:
+
+```diff
+# Makefile
+-PORT_CONTAINER = 3333
++PORT_CONTAINER = <new port>
+```
+
+**if you want to change you host port too**:
+
+```diff
+# Makefile
+-PORT_HOST = 3333
++PORT_HOST = <new port>
+```
+
+## Dev
+
+-   `make dev`
+-   navigate to `http://localhost:<PORT_HOST>/` where PORT_HOST is... the PORT_HOST
+-   enjoy Vite [Hot Module Reload](https://vitejs.dev/guide/features.html#hot-module-replacement) and [TS support](https://vitejs.dev/guide/features.html#typescript)
+-   have fun with [Vuejs](https://vuejs.org/)
+
+## Package Management
+
+Once container is running :
+
+-   `make add_deps <package>` to add a dependency
+-   `make add_dev_deps` for a dev dependency
+-   `make rm_deps` to remove one of them
+
+## Links
+
+-   [Vue](https://vuejs.org/)
+-   [Vite config](https://vitejs.dev/config)
+-   [Vite server config](https://vitejs.dev/config/server-options.html)
+-   [Node](https://hub.docker.com/_/node) on Docker hub
+-   [Node lts-slim](https://hub.docker.com/_/node?tab=tags&page=1&name=lts-slim) image on Docker hub
+-   [Docker](https://docs.docker.com/)
+-   [Docker and Node.js best practices](https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md)
